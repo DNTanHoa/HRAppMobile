@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xf:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            prism:ViewModelLocator.AutowireViewModel="True"
+            x:Class="HRApp.Views.Feature"
+            xmlns:local="clr-namespace:HRApp.Views"
+            xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+            xmlns:views="clr-namespace:HRApp.Views">
+    <local:Home Icon="home.png"
+                xf:BottomBarPageExtensions.TabColor="Tomato"/>
+    <local:Home Icon="chart.png"
+                xf:BottomBarPageExtensions.TabColor="BlueViolet"/>
+    <local:Home Icon="working.png"
+                xf:BottomBarPageExtensions.TabColor="Teal"/>
+    <local:Function Icon="feature.png"
+                   xf:BottomBarPageExtensions.TabColor="YellowGreen"/>
+</xf:BottomBarPage>

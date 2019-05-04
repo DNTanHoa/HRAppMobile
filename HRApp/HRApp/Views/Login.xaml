@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="HRApp.Views.Login"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    <StackLayout x:Name="MasterLayout"
+                 HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+        <StackLayout Padding="10" HorizontalOptions="Center">
+            <Label Text="Hệ Thống Quản Lý Nhân Sự" 
+                   FontSize="24" 
+                   HorizontalTextAlignment="Center"
+                   TextColor="Black"></Label>
+        </StackLayout>
+        <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
+            <controls:CircleImage Source="logo.jpg" HeightRequest="160" WidthRequest="160"></controls:CircleImage>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="Tên Đăng Nhập"
+                   FontSize="18"
+                   Margin="5,0,5,0"/>
+            <Entry x:Name="usernameInput"
+                   Placeholder="Mã Nhân Viên"></Entry>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="Mật Khẩu"
+                   FontSize="18"
+                   Margin="5,0,5,0"/>
+            <Entry x:Name="passwordInput"
+                   Placeholder="Password"
+                   IsPassword="True"></Entry>
+        </StackLayout>
+        <StackLayout>
+            <Button Text="Đăng Nhập"
+                    FontSize="18"
+                    BorderRadius="20"
+                    BackgroundColor="BlueViolet"
+                    Margin="0,5,0,5"
+                    Clicked="LoginEvent">
+            </Button>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
