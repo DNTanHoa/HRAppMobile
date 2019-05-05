@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="HRApp.Views.Warrant"
+             BackgroundColor="White">
+    <ScrollView>
+        <StackLayout x:Name="MasterLayout">
+            <StackLayout x:Name="TitleAndLogo">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0"
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Image Source="logo.jpg"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1"
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="StartAndExpand">
+                        <Label TextColor="BlueViolet"
+                               Text="Biểu Mẫu Cá Nhân"
+                               FontAttributes="Bold"
+                               FontSize="20"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <StackLayout x:Name="Information">
+                <Label HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Text="Thống Kê"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+                <StackLayout Margin="10">
+                    <Label Text="Đơn Xin Nghỉ Phép"
+                           FontAttributes="Bold"
+                           TextColor="BlueViolet"
+                           FontSize="18"/>
+                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Red"/>
+                    <Label Text="Tổng Số: 10"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Margin="10">
+                    <Label Text="Yêu Cầu Tăng Ca"
+                           FontAttributes="Bold"
+                           TextColor="BlueViolet"
+                           FontSize="18"/>
+                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Red"/>
+                    <Label Text="Tổng Số: 10"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Margin="10">
+                    <Label Text="Xin Đi Trễ"
+                           FontAttributes="Bold"
+                           TextColor="BlueViolet"
+                           FontSize="18"/>
+                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Red"/>
+                    <Label Text="Tổng Số: 10"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Margin="10">
+                    <Label Text="Bổ Sung Giờ"
+                           FontAttributes="Bold"
+                           TextColor="BlueViolet"
+                           FontSize="18"/>
+                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Red"/>
+                    <Label Text="Tổng Số: 10"
+                           FontAttributes="Italic"
+                           FontSize="15"
+                           TextColor="Black"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

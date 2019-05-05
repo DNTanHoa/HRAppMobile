@@ -3,6 +3,166 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="HRApp.Views.Function">
-  
+             x:Class="HRApp.Views.Function"
+             BackgroundColor="White">
+    <ScrollView>
+        <StackLayout x:Name="MasterLayout"
+                     VerticalOptions="StartAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <StackLayout x:Name="TitleAndLogo">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0"
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Image Source="logo.jpg"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1"
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="StartAndExpand">
+                        <Label TextColor="YellowGreen"
+                               Text="Chức Năng Cá Nhân"
+                               FontAttributes="Bold"
+                               FontSize="20"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <StackLayout x:Name="ListOfFunction">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="StartAndExpand">
+                                <Label x:Name="FunctionName1" 
+                                       Text="Xin Nghỉ Phép"
+                                       Margin="10,0,5,0"
+                                       TextColor="YellowGreen"
+                                       FontAttributes="Bold"
+                                       FontSize="18"/>
+                                <Label x:Name="FunctionDescription1"
+                                       Text="Tạo đơn xin nghỉ phép cho nhân viên"
+                                       TextColor="Black"
+                                       FontAttributes="Italic"
+                                       Margin="10,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Button Image="Add.png"
+                                        HeightRequest="48"
+                                        WidthRequest="48"
+                                        BorderRadius="96"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="StartAndExpand">
+                                <Label x:Name="FunctionName" 
+                                       Text="Đăng Ký Tăng Ca"
+                                       Margin="10,0,10,0"
+                                       TextColor="YellowGreen"
+                                       FontAttributes="Bold"
+                                       FontSize="18"/>
+                                <Label x:Name="FunctionDescription"
+                                       Text="Đăng ký tăng ca ngoài giờ cho công nhân"
+                                       TextColor="Black"
+                                       FontAttributes="Italic"
+                                       Margin="10,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Button Image="Add.png"
+                                        HeightRequest="48"
+                                        WidthRequest="48"
+                                        BorderRadius="96"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="StartAndExpand">
+                                <Label Text="Xin Đi Trễ"
+                                       Margin="10,0,10,0"
+                                       TextColor="YellowGreen"
+                                       FontAttributes="Bold"
+                                       FontSize="18"/>
+                                <Label Text="Xin phép đi trễ về sớm nghỉ giữa giờ"
+                                       TextColor="Black"
+                                       FontAttributes="Italic"
+                                       Margin="10,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Button Image="Add.png"
+                                        HeightRequest="48"
+                                        WidthRequest="48"
+                                        BorderRadius="96"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="StartAndExpand">
+                                <Label Text="Bổ Sung Giờ"
+                                       Margin="10,0,10,0"
+                                       TextColor="YellowGreen"
+                                       FontAttributes="Bold"
+                                       FontSize="18"/>
+                                <Label Text="Bổ Sung Giờ Trong Trường Hợp Có Lý Do"
+                                       TextColor="Black"
+                                       FontAttributes="Italic"
+                                       Margin="10,0,10,0"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"
+                                         VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Button Image="Add.png"
+                                        HeightRequest="48"
+                                        WidthRequest="48"
+                                        BorderRadius="96"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

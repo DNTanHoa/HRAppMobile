@@ -14,6 +14,7 @@ namespace HRApp.Views
         {
             usernameInput.Completed += (s, e) => passwordInput.Focus();
             passwordInput.Completed += (s, e) => LoginEvent(s, e);
+            NavigationPage.SetHasNavigationBar(this, false);
         }
         private void LoginEvent(object sender, System.EventArgs e)
         {
@@ -21,6 +22,7 @@ namespace HRApp.Views
             if(user.CheckInput())
             {
                 DisplayAlert("Đăng Nhập", "Đăng Nhập Thành Công", "Xác Nhận");
+                Navigation.PushAsync(new Feature());
             }
             else
             {

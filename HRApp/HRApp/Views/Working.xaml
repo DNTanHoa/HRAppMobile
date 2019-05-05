@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="HRApp.Views.Working"
+             BackgroundColor="White">
+    <ScrollView>
+        <StackLayout x:Name="MasterLayout">
+            <StackLayout x:Name="TitleAndLogo">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0"
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Image Source="logo.jpg"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1"
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="StartAndExpand">
+                        <Label TextColor="Teal"
+                               Text="Thông Tin Giờ Công"
+                               FontAttributes="Bold"
+                               FontSize="20"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <StackLayout x:Name="Time">
+                <Label VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="Center"
+                       Text="Thông Tin Giờ Công"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="18"/>
+                <StackLayout x:Name="StartDate">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0"
+                                     VerticalOptions="CenterAndExpand">
+                            <Label Text="Từ Ngày"
+                               FontAttributes="Italic"
+                               FontSize="18"
+                               TextColor="Black"
+                               Margin="10,10,0,10"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"
+                                     VerticalOptions="CenterAndExpand">
+                            <DatePicker x:Name="startDatePicker"
+                                Format="dd/MM/yyyy"
+                                Margin="10,0,10,0"
+                                TextColor="Black"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <StackLayout x:Name="EndDate">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0"
+                                     VerticalOptions="CenterAndExpand">
+                            <Label Text="Đến Ngày"
+                               FontAttributes="Italic"
+                               FontSize="18"
+                               TextColor="Black"
+                               Margin="10,10,0,0"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"
+                                     VerticalOptions="CenterAndExpand">
+                            <DatePicker x:Name="endDatePicker"
+                                Format="dd/MM/yyy"
+                                Margin="10,0,10,0"
+                                TextColor="Black"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Button x:Name="SearchWorKingTime"
+                        Margin="10,0,10,0"
+                        Text="Xem Kết Quả"
+                        Padding="4"
+                        TextColor="Teal"
+                        BackgroundColor="White"
+                        BorderColor="Teal"
+                        BorderWidth="2"
+                        BorderRadius="30"/>
+            </StackLayout>
+            <StackLayout x:Name="ResultWorkingTime"
+                         Margin="0,10,0,10">
+                <Label VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="Center"
+                       Text="Kết Quả"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="18"/>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="Tổng Số Ngày"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="Ngày Được Nghỉ"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="Ngày Công"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="Tổng Giờ"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="Lần Tăng Ca"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="Tổng Giờ TC"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="Lần Đi Trễ"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="Lần Nghỉ Phép"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="30"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="5"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="25"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="200"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="5"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="10"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="2"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                            <Label Text="2"
+                                   TextColor="Teal"
+                                   FontSize="20"
+                                   Margin="10,5,10,5"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

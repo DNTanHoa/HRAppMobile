@@ -23,7 +23,7 @@ namespace HRApp
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("Feature");
+            await NavigationService.NavigateAsync("NavigationPage/Login");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -34,6 +34,8 @@ namespace HRApp
             containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
             containerRegistry.RegisterForNavigation<Feature, FeatureViewModel>();
             containerRegistry.RegisterForNavigation<Function, FunctionViewModel>();
+            containerRegistry.RegisterForNavigation<Working, WorkingViewModel>();
+            containerRegistry.RegisterForNavigation<Warrant, WarrantViewModel>();
         }
     }
 }
