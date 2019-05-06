@@ -36,6 +36,7 @@ namespace HRApp
             containerRegistry.RegisterForNavigation<Function, FunctionViewModel>();
             containerRegistry.RegisterForNavigation<Working, WorkingViewModel>();
             containerRegistry.RegisterForNavigation<Warrant, WarrantViewModel>();
+            containerRegistry.RegisterForNavigation<InformationDetail, InformationDetailViewModel>();
         }
     }
 }

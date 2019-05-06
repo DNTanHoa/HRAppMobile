@@ -22,7 +22,8 @@
                    FontSize="18"
                    Margin="5,0,5,0"/>
             <Entry x:Name="usernameInput"
-                   Placeholder="Mã Nhân Viên"></Entry>
+                   Placeholder="Mã Nhân Viên"
+                   Text="{Binding Username}"></Entry>
         </StackLayout>
         <StackLayout>
             <Label Text="Mật Khẩu"
@@ -30,7 +31,8 @@
                    Margin="5,0,5,0"/>
             <Entry x:Name="passwordInput"
                    Placeholder="Password"
-                   IsPassword="True"></Entry>
+                   IsPassword="True"
+                   Text="{Binding Password}"></Entry>
         </StackLayout>
         <StackLayout>
             <Button Text="Đăng Nhập"
@@ -38,7 +40,7 @@
                     BorderRadius="20"
                     BackgroundColor="BlueViolet"
                     Margin="0,5,0,5"
-                    Clicked="LoginEvent">
+                    Command="{Binding loginCommand}">
             </Button>
         </StackLayout>
     </StackLayout>

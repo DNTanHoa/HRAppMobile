@@ -1,4 +1,5 @@
 ﻿using HRApp.Models;
+using HRApp.ViewModels;
 using Xamarin.Forms;
 
 namespace HRApp.Views
@@ -13,21 +14,7 @@ namespace HRApp.Views
         public void CustomRender()
         {
             usernameInput.Completed += (s, e) => passwordInput.Focus();
-            passwordInput.Completed += (s, e) => LoginEvent(s, e);
             NavigationPage.SetHasNavigationBar(this, false);
-        }
-        private void LoginEvent(object sender, System.EventArgs e)
-        {
-            User user = new User(usernameInput.Text, passwordInput.Text);
-            if(user.CheckInput())
-            {
-                DisplayAlert("Đăng Nhập", "Đăng Nhập Thành Công", "Xác Nhận");
-                Navigation.PushAsync(new Feature());
-            }
-            else
-            {
-                DisplayAlert("Đăng Nhập", "Đăng Nhập Thất Bại. Tên Đăng Nhập Hoặc Mật Khẩu Không Được Đẻ Trống", "Quay Lại");
-;           }
         }
     }
 }
