@@ -37,6 +37,9 @@ namespace HRApp
             containerRegistry.RegisterForNavigation<Working, WorkingViewModel>();
             containerRegistry.RegisterForNavigation<Warrant, WarrantViewModel>();
             containerRegistry.RegisterForNavigation<InformationDetail, InformationDetailViewModel>();
+            containerRegistry.RegisterForNavigation<RaiseAnnualLeave, RaiseAnnualLeaveViewModel>();
+            containerRegistry.RegisterForNavigation<RaiseOvertime, RaiseOvertimeViewModel>();
+            containerRegistry.RegisterForNavigation<RaiseComeLate, RaiseComeLateViewModel>();
         }
     }
 }

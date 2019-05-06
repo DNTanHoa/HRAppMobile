@@ -68,7 +68,8 @@
                                 <Button Image="Add.png"
                                         HeightRequest="48"
                                         WidthRequest="48"
-                                        BorderRadius="96"/>
+                                        BorderRadius="96"
+                                        Command="{Binding RasieAnnualLeave}"/>
                             </StackLayout>
                         </Grid>
                     </StackLayout>
@@ -99,7 +100,8 @@
                                 <Button Image="Add.png"
                                         HeightRequest="48"
                                         WidthRequest="48"
-                                        BorderRadius="96"/>
+                                        BorderRadius="96"
+                                        Command="{Binding RaiseOvertime}"/>
                             </StackLayout>
                         </Grid>
                     </StackLayout>
@@ -128,7 +130,8 @@
                                 <Button Image="Add.png"
                                         HeightRequest="48"
                                         WidthRequest="48"
-                                        BorderRadius="96"/>
+                                        BorderRadius="96"
+                                        Command="{Binding RaiseComeLate}"/>
                             </StackLayout>
                         </Grid>
                     </StackLayout>

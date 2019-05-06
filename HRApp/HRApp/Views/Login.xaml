@@ -36,6 +36,7 @@
         </StackLayout>
         <StackLayout>
             <Button Text="Đăng Nhập"
+                    TextColor="White"
                     FontSize="18"
                     BorderRadius="20"
                     BackgroundColor="BlueViolet"
