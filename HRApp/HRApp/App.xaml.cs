@@ -40,6 +40,7 @@ namespace HRApp
             containerRegistry.RegisterForNavigation<RaiseAnnualLeave, RaiseAnnualLeaveViewModel>();
             containerRegistry.RegisterForNavigation<RaiseOvertime, RaiseOvertimeViewModel>();
             containerRegistry.RegisterForNavigation<RaiseComeLate, RaiseComeLateViewModel>();
+            containerRegistry.RegisterForNavigation<RaiseAddTimeWorking, RaiseAddTimeWorkingViewModel>();
         }
     }
 }

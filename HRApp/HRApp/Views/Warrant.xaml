@@ -43,15 +43,15 @@
                            FontAttributes="Bold"
                            TextColor="BlueViolet"
                            FontSize="18"/>
-                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                    <Label Text="{Binding lastestDateCreatedOfAnnualLeave, StringFormat='Ngày Tạo Gần Nhất: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>
-                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                    <Label Text="{Binding quantityOfAnnualLeavesIsNotAllowed, StringFormat='Sồ Lượng Chưa Duyệt: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Red"/>
-                    <Label Text="Tổng Số: 10"
+                    <Label Text="{Binding quantityOfAnnualLeaves, StringFormat='Tổng Số: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>
@@ -61,15 +61,15 @@
                            FontAttributes="Bold"
                            TextColor="BlueViolet"
                            FontSize="18"/>
-                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                    <Label Text="{Binding lastestDateCreatedOfTimeWorking, StringFormat='Ngày Tạo Gần Nhất: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>
-                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                    <Label Text="{Binding quantityOfOvertimeWorkingIsNotAllowed, StringFormat='Sồ Lượng Chưa Duyệt: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Red"/>
-                    <Label Text="Tổng Số: 10"
+                    <Label Text="{Binding quantityOfOvertimeWorking, StringFormat='Tổng Số: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>
@@ -79,15 +79,15 @@
                            FontAttributes="Bold"
                            TextColor="BlueViolet"
                            FontSize="18"/>
-                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                    <Label Text="{Binding lastestDateCreatedOfComeLate, StringFormat='Ngày Tạo Gần Nhất: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>
-                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                    <Label Text="{Binding quantityOfComeLateIsNotAllowed, StringFormat='Sồ Lượng Chưa Duyệt: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Red"/>
-                    <Label Text="Tổng Số: 10"
+                    <Label Text="{Binding quantityOfComeLate, StringFormat='Tổng Số: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>
@@ -97,15 +97,15 @@
                            FontAttributes="Bold"
                            TextColor="BlueViolet"
                            FontSize="18"/>
-                    <Label Text="Ngày Tạo Gần Nhất: 05/05/2015"
+                    <Label Text="{Binding lastestDateCreatedOfAddtime, StringFormat='Ngày Tạo Gần Nhất: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>
-                    <Label Text="Số Lượng Chưa Duyệt: 4"
+                    <Label Text="{Binding quantityOfAddtimeIsNotAllowed, StringFormat='Sồ Lượng Chưa Duyệt: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Red"/>
-                    <Label Text="Tổng Số: 10"
+                    <Label Text="{Binding quantityOfAddtime, StringFormat='Tổng Số: {0}'}"
                            FontAttributes="Italic"
                            FontSize="15"
                            TextColor="Black"/>

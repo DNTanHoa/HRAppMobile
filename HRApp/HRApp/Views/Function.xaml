@@ -160,7 +160,8 @@
                                 <Button Image="Add.png"
                                         HeightRequest="48"
                                         WidthRequest="48"
-                                        BorderRadius="96"/>
+                                        BorderRadius="96"
+                                        Command="{Binding RaiseAddTimeWorking}"/>
                             </StackLayout>
                         </Grid>
                     </StackLayout>

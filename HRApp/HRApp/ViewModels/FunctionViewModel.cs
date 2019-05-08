@@ -17,6 +17,12 @@ namespace HRApp.ViewModels
             RasieAnnualLeave = new DelegateCommand(async () => await RasieAnnualLeaveExecute());
             RaiseOvertime = new DelegateCommand(async () => await RasieOverTimeExecute());
             RaiseComeLate = new DelegateCommand(async () => await RaiseComeLateExecute());
+            RaiseAddTimeWorking = new DelegateCommand(async () => await RaiseAddTimeWorkingExecute());
+        }
+
+        private async Task RaiseAddTimeWorkingExecute()
+        {
+            await NavigationService.NavigateAsync("RaiseAddTimeWorking");
         }
 
         private async Task RaiseComeLateExecute()
@@ -37,6 +43,7 @@ namespace HRApp.ViewModels
         public DelegateCommand RasieAnnualLeave { get; set; }
         public DelegateCommand RaiseOvertime { get; set; }
         public DelegateCommand RaiseComeLate { get; set; }
+        public DelegateCommand RaiseAddTimeWorking { get; set; }
 
     }
 }
