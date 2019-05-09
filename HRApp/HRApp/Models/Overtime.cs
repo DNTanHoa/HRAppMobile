@@ -6,5 +6,6 @@ namespace HRApp.Models
 {
     public class Overtime
     {
+
     }
 }
