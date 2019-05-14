@@ -1,12 +1,14 @@
-﻿using HRApp.Models;
+﻿using HRApp.Constant;
+using HRApp.Models;
+using HRApp.Services;
 using HRApp.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using Prism.Navigation.Xaml;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -15,38 +17,70 @@ namespace HRApp.ViewModels
 {
 	public class LoginViewModel : ViewModelBase
 	{
-        IPageDialogService _dialogService;
-        public LoginViewModel(INavigationService navigationService, IPageDialogService dialogService)
+        ODataService _dataService = new ODataService();
+        public LoginViewModel(INavigationService navigationService)
            : base(navigationService)
         {
             Title = "Trang Đăng Nhập";
-            _dialogService = dialogService;
             loginCommand = new DelegateCommand(OnLoginCommand);
         }
         public DelegateCommand loginCommand { get; }
-        public void OnLoginCommand()
+        public async void OnLoginCommand()
         {
-            if(this.user.CheckInput())
+            if (this.searchUser())
             {
-                Application.Current.MainPage.DisplayAlert("Đăng Nhập", "Đăng Nhập Thành Công", "Xác Nhận");
-                //-----------------------------------------------------------------------------------------------
-                //
-                // Write function to check user in database
-                //
-                //-----------------------------------------------------------------------------------------------
-                NavigationService.NavigateAsync("Feature");
+                NavigationParameters parameters = new NavigationParameters
+                {
+                    {"nhanVien",this.selectedNhanvien},
+                    {"service",this._dataService}
+                };
+                await NavigationService.NavigateAsync("Home", parameters);
             }
             else
             {
-                Application.Current.MainPage.DisplayAlert("Đăng Nhập", "Đăng Nhập Thất Bại. Tên Đăng Nhập Hoặc Mật Khẩu Không Thể Để Trống", "Xác Nhận");
+                await Application.Current.MainPage.DisplayAlert("Đăng Nhập", "Tên Đăng Nhập Hoặc Mật Khẩu Không Chính Xác", "Xác Nhận");
             }
         }
-        public User user
+        private NhanVien _selectedNhanVien;
+        public NhanVien selectedNhanvien
         {
-            get
+            get => _selectedNhanVien;
+            set => SetProperty(ref _selectedNhanVien, value);
+        }
+        private bool searchUser()
+        {
+            bool result = false;
+            foreach (NhanVien user in this.employees)
             {
-                User user = new User(this.Username, this.Password);
-                return user;
+                Console.WriteLine(user.userName);
+                if ((this.Username == user.userName) && (this.Password == user.passWord))
+                {
+                    this.selectedNhanvien = user;
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+        public async void getSelectedNhanVien()
+        {
+            try
+            {
+                await _dataService.GetEmployee(this.Username);
+            }
+            catch
+            {
+
+            }
+        }
+        private List<NhanVien> _employees;
+        public List<NhanVien> employees
+        {
+            get => _employees;
+            set
+            {
+                SetProperty(ref _employees, value);
+                RaisePropertyChanged(nameof(employees));
             }
         }
         private string _userName = "";
@@ -56,7 +90,7 @@ namespace HRApp.ViewModels
             set
             {
                 SetProperty(ref _userName, value);
-                RaisePropertyChanged(nameof(user));
+                RaisePropertyChanged(nameof(Username));
             }
         }
         private string _passWord = "";
@@ -66,7 +100,22 @@ namespace HRApp.ViewModels
             set
             {
                 SetProperty(ref _passWord, value);
-                RaisePropertyChanged(nameof(user));
+                RaisePropertyChanged(nameof(Password));
+            }
+        }
+        public override async void OnNavigatingTo(INavigationParameters parameters)
+        {
+            try
+            {
+                await _dataService.Login(ServerConfig.serverAddress, ServerConfig.userName, ServerConfig.passWord);
+                if (this.employees == null)
+                {
+                    this.employees = new List<NhanVien>(await _dataService.GetAllEmployee());
+                }
+            }
+            catch(Exception exception)
+            {
+                throw exception;
             }
         }
     }

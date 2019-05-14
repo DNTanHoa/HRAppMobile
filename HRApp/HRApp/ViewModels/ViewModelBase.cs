@@ -4,6 +4,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HRApp.ViewModels
 {
@@ -37,10 +38,38 @@ namespace HRApp.ViewModels
         {
 
         }
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value, () => RaisePropertyChanged(nameof(IsNotBusy))); }
+        }
+        public bool IsNotBusy
+        {
+            get { return !IsBusy; }
+        }
 
         public virtual void Destroy()
         {
 
+        }
+        public async Task SetBusyAsync(Func<Task> func, string loadingMessage = null)
+        {
+            if (loadingMessage == null)
+            {
+                loadingMessage = "";
+            }
+
+            IsBusy = true;
+
+            try
+            {
+                await func();
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

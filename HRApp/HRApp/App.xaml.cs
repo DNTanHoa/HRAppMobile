@@ -23,7 +23,7 @@ namespace HRApp
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/Login");
+            await NavigationService.NavigateAsync("Login");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

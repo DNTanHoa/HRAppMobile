@@ -7,7 +7,7 @@ namespace HRApp.Models
     public class AnnualLeave
     {
         public int Id { get; set; }
-        public User employee { get; set; }
+        public NhanVien employee { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateLeave { get; set; }
         public bool IsAllowed { get; set; }
