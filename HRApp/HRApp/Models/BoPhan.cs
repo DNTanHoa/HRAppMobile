@@ -4,10 +4,10 @@ using System.Text;
 
 namespace HRApp.Models
 {
-    public class BoPhan : BaseModel
+    public class BoPhan:BaseModel
     {
-        public string maBoPhan { get; set; }
-        public string tenBoPhan { get; set; }
-        public NhanVien truongBoPhan { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Manager { get; set; }
     }
 }

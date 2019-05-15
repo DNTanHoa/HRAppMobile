@@ -55,6 +55,12 @@ namespace HRApp.ViewModels
             get => _Supervisor;
             set => SetProperty (ref _Supervisor, value);
         }
+        private ImageSource _avatar;
+        public ImageSource avatar
+        {
+            get => _avatar;
+            set => SetProperty(ref _avatar, value);
+        }
         private NhanVien _nhanVien;
         public NhanVien nhanVien
         {
@@ -73,19 +79,16 @@ namespace HRApp.ViewModels
             this.EmployeeCode = nhanVien.userName;
             try
             { 
-                Console.WriteLine("Mã Nhân Viên Hiện Tại Là {0}", this.EmployeeCode);
-                await oDataService.Login(ServerConfig.serverAddress, ServerConfig.userName, ServerConfig.passWord);
                 this.nhanVien = await oDataService.GetEmployee(this.EmployeeCode);
-                
+                this.FullName = this.nhanVien.Name;
+                this.Department = this.nhanVien.department;
+                this.Supervisor = this.nhanVien.supervisor;
+                this.avatar = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(this.nhanVien.image)));
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-        }
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            this.FullName = this.nhanVien.Name;
         }
     }
 }

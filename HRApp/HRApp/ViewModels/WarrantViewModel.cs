@@ -14,13 +14,13 @@ namespace HRApp.ViewModels
         {
             Title = "Trang Quản Lý Phép";
         }
-        IEnumerable<AnnualLeave> _annualLeaves;
-        public IEnumerable<AnnualLeave> annualLeaves
-        {
-            get => _annualLeaves;
-            set => SetProperty(ref _annualLeaves, value);
+        //IEnumerable<AnnualLeave> _annualLeaves;
+        //public IEnumerable<AnnualLeave> annualLeaves
+        //{
+        //    get => _annualLeaves;
+        //    set => SetProperty(ref _annualLeaves, value);
 
-        }
+        //}
         private string _quantityOfAnnualLeaves;
         public string quantityOfAnnualLeaves
         {
@@ -39,12 +39,12 @@ namespace HRApp.ViewModels
             get => _lastestDateCreatedOfAnnualLeave;
             set => SetProperty(ref _lastestDateCreatedOfAnnualLeave, value);
         }
-        IEnumerable<ComeLate> _comeLates;
-        public IEnumerable<ComeLate> comeLates
-        {
-            get => _comeLates;
-            set => SetProperty(ref _comeLates, value);
-        }
+        //IEnumerable<ComeLate> _comeLates;
+        //public IEnumerable<ComeLate> comeLates
+        //{
+        //    get => _comeLates;
+        //    set => SetProperty(ref _comeLates, value);
+        //}
         private string _quantityOfComeLate;
         public string quantityOfComeLate
         {
@@ -63,12 +63,12 @@ namespace HRApp.ViewModels
             get => _lastestDateCreatedOfComeLate;
             set => SetProperty(ref _lastestDateCreatedOfComeLate, value);
         }
-        IEnumerable<Overtime> _overtimesWorking;
-        public IEnumerable<Overtime> OvertimesWorking
-        {
-            get => _overtimesWorking;
-            set => SetProperty(ref _overtimesWorking, value);
-        }
+        //IEnumerable<Overtime> _overtimesWorking;
+        //public IEnumerable<Overtime> OvertimesWorking
+        //{
+        //    get => _overtimesWorking;
+        //    set => SetProperty(ref _overtimesWorking, value);
+        //}
         public string _quantityOfOvertimeWorking;
         public string quantityOfOvertimeWorking
         {
@@ -87,12 +87,12 @@ namespace HRApp.ViewModels
             get => _lastestDateCreatedOfTimeWorking;
             set => SetProperty(ref _lastestDateCreatedOfTimeWorking, value);
         }
-        IEnumerable<AddTime> _addtimes;
-        public IEnumerable<AddTime> addtimes
-        {
-            get => _addtimes;
-            set => SetProperty(ref _addtimes, value);
-        }
+        //IEnumerable<AddTime> _addtimes;
+        //public IEnumerable<AddTime> addtimes
+        //{
+        //    get => _addtimes;
+        //    set => SetProperty(ref _addtimes, value);
+        //}
         public string _quantityOfAddtime;
         public string quantityOfAddtime
         {

@@ -53,6 +53,7 @@ namespace HRApp.Services
                 var result = await _client
                     .For(type)
                     .Filter($"maNhanVien eq '{maNhanVien}'")
+                    .Expand("BoPhan")
                     .FindEntryAsync();
                 if (!result.Equals(null))
                 {
@@ -60,10 +61,39 @@ namespace HRApp.Services
                     {
                         Id = (int)result["Id"],
                         Name = (string)result["TenNhanVien"],
-                        maNhanVien = (string)result["maNhanVien"]
+                        maNhanVien = (string)result["maNhanVien"],
+                        department = (result["boPhan"] as IDictionary<string, object>)["tenBoPhan"] as string,
+                        supervisor = (string)result["tenNguoiQuanLy"],
+                        image = (string)result["ContentHinhAnh"]
                     };
-                    Console.WriteLine("Tên Nhân Viên Là {0}",nhanVien.Name);
                     return nhanVien;
+                }
+                else
+                    return null;
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+        }
+        public async Task<BoPhan> GetDepartment(string tenBoPhan)
+        {
+            try
+            {
+                string type = $"{prefix}_Module_BusinessObjects_{typeof(BoPhan).Name}";
+                var result = await _client
+                               .For(type)
+                               .Filter($"tenBoPhan eq '{tenBoPhan}'")
+                               .Expand("NhanVien")
+                               .FindEntryAsync();
+                if(result != null)
+                {
+                    BoPhan department = new BoPhan
+                    {
+                        Id = (int)result["Id"],
+                        Code = (string)result["maBoPhan"]
+                    };
+                    return department;
                 }
                 else
                     return null;

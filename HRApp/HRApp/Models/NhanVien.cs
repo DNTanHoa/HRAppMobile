@@ -10,23 +10,10 @@ namespace HRApp.Models
         public string passWord { get; set; }
         public string Name { get; set; }
         public string maNhanVien { get; set; }
+        public string department { get; set; }
+        public string supervisor { get; set; }
+        public string image { get; set; }
         public NhanVien() { }
         public NhanVien(NhanVien nhanVien) { }
-        public NhanVien(string userName, string passWord)
-        {
-            this.userName = userName;
-            this.passWord = passWord;
-        }
-        public bool CheckInput()
-        {
-            if(this.userName.Equals("") || this.passWord.Equals(""))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
     }
 }

@@ -25,7 +25,7 @@ namespace HRApp.ViewModels
             loginCommand = new DelegateCommand(OnLoginCommand);
         }
         public DelegateCommand loginCommand { get; }
-        public async void OnLoginCommand()
+        public void OnLoginCommand()
         {
             if (this.searchUser())
             {
@@ -34,11 +34,11 @@ namespace HRApp.ViewModels
                     {"nhanVien",this.selectedNhanvien},
                     {"service",this._dataService}
                 };
-                await NavigationService.NavigateAsync("Home", parameters);
+                NavigationService.NavigateAsync("Feature", parameters);
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Đăng Nhập", "Tên Đăng Nhập Hoặc Mật Khẩu Không Chính Xác", "Xác Nhận");
+                Application.Current.MainPage.DisplayAlert("Đăng Nhập", "Tên Đăng Nhập Hoặc Mật Khẩu Không Chính Xác", "Xác Nhận");
             }
         }
         private NhanVien _selectedNhanVien;

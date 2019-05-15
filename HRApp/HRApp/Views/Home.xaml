@@ -39,7 +39,8 @@
                          VerticalOptions="Center" 
                          HorizontalOptions="Center"
                          Margin="0,10,0,10">
-                <controls:CircleImage Source="Avatar.jpg"
+                <controls:CircleImage x:Name="AvatarPicture"
+                                      Source="{Binding avatar}}"
                                       WidthRequest="200"
                                       HeightRequest="200"
                                       Aspect="AspectFit">
