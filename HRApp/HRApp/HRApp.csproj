@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ViewModels\LoginViewModel.cs~RF12c87257.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Simple.OData.Client" Version="5.7.0" />
     <PackageReference Include="Simple.OData.V3.Client" Version="5.7.0" />
     <PackageReference Include="Simple.OData.V4.Client" Version="5.7.0" />

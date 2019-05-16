@@ -50,15 +50,21 @@ namespace HRApp.ViewModels
         private bool searchUser()
         {
             bool result = false;
-            foreach (NhanVien user in this.employees)
+            if(this.employees != null)
             {
-                Console.WriteLine(user.userName);
-                if ((this.Username == user.userName) && (this.Password == user.passWord))
+                foreach (NhanVien user in this.employees)
                 {
-                    this.selectedNhanvien = user;
-                    result = true;
-                    break;
+                    if ((this.Username == user.userName) && (this.Password == user.passWord))
+                    {
+                        this.selectedNhanvien = user;
+                        result = true;
+                        break;
+                    }
                 }
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Đăng Nhập", "Mạng Lỗi Kiểm Tra Lại Kết Nối Wifi","Xác Nhận");
             }
             return result;
         }

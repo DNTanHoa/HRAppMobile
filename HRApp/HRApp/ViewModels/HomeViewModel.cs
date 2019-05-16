@@ -90,5 +90,13 @@ namespace HRApp.ViewModels
                 throw exception;
             }
         }
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            NavigationParameters parameter = new NavigationParameters
+            {
+                {"nhanVien",this.nhanVien},
+                {"service",this.oDataService}
+            };
+        }
     }
 }

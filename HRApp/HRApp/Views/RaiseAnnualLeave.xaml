@@ -45,7 +45,8 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
-                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <StackLayout Orientation="Horizontal"
@@ -55,7 +56,7 @@
                            FontAttributes="Bold"
                            FontSize="18"
                            Margin="10,0,0,0"/>
-                        <Label Text="Dương Nguyễn Tấn Hòa"
+                        <Label Text="{Binding nguoiXinPhep}"
                            TextColor="OrangeRed"
                            FontAttributes="Italic"
                            FontSize="18"/>
@@ -64,8 +65,8 @@
                                   Grid.Row="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="Ngày Tạo:"
                                    TextColor="Black"
@@ -79,6 +80,8 @@
                                     Format="dd/MM/yyyy"
                                     FontSize="18"
                                     VerticalOptions="CenterAndExpand"
+                                    IsEnabled="False"
+                                    Date="{Binding ngayTaoDon}"
                                     Grid.Column="1"/>
                         </Grid>
                     </StackLayout>
@@ -86,8 +89,8 @@
                                  Grid.Row="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="Ngày Nghỉ:"
                                    TextColor="Black"
@@ -101,6 +104,7 @@
                                     Format="dd/MM/yyyy"
                                     FontSize="18"
                                     VerticalOptions="CenterAndExpand"
+                                    Date="{Binding ngayNghi}"
                                     Grid.Column="1"/>
                         </Grid>
                     </StackLayout>
@@ -108,8 +112,8 @@
                                  Grid.Row="3">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="Lý Do:" Grid.Column="0"
                                    TextColor="Black"
@@ -118,21 +122,43 @@
                                    VerticalOptions="CenterAndExpand"
                                    Margin="10,0,0,0"/>
                             <StackLayout Grid.Column="1">
-                                <Editor Text="Lý Do Xin Nghỉ Phép."
+                                <Editor Text="{Binding LyDo}"
                                     TextColor="Black"
                                     MaxLength="100"
                                     VerticalOptions="CenterAndExpand"/>
                             </StackLayout>
                         </Grid>
                     </StackLayout>
-                    <StackLayout Grid.Row="4">
+                    <StackLayout Orientation="Horizontal"
+                                 Grid.Row="4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Số Ngày:" Grid.Column="0"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   VerticalOptions="CenterAndExpand"
+                                   Margin="10,0,0,0"/>
+                            <StackLayout Grid.Column="1">
+                                <Entry Text="{Binding soNgay}"
+                                    TextColor="Black"
+                                    MaxLength="100"
+                                    VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="5">
                         <Button Text="Xác Nhận"
-                                    TextColor="OrangeRed"
-                                    BackgroundColor="White"
-                                    BorderColor="OrangeRed"
-                                    BorderWidth="2"
-                                    BorderRadius="20"
-                                    Margin="10,0,10,0"/>
+                                TextColor="OrangeRed"
+                                BackgroundColor="White"
+                                BorderColor="OrangeRed"
+                                BorderWidth="2"
+                                BorderRadius="20"
+                                Margin="10,0,10,0"
+                                Command="{Binding ConfirmCommand}"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>

@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using HRApp.Models;
+using HRApp.Services;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -22,28 +24,61 @@ namespace HRApp.ViewModels
 
         private async Task RaiseAddTimeWorkingExecute()
         {
-            await NavigationService.NavigateAsync("RaiseAddTimeWorking");
+            NavigationParameters param = new NavigationParameters
+            {
+                {"nhanVien", this.nhanVien},
+                {"service", this.oDataService}
+            };
+            await NavigationService.NavigateAsync("RaiseAddTimeWorking",param);
         }
 
         private async Task RaiseComeLateExecute()
         {
-            await NavigationService.NavigateAsync("RaiseComeLate");
+            NavigationParameters param = new NavigationParameters
+            {
+                {"nhanVien", this.nhanVien},
+                {"service", this.oDataService}
+            };
+            await NavigationService.NavigateAsync("RaiseComeLate",param);
         }
 
         private async Task RasieOverTimeExecute()
         {
-            await NavigationService.NavigateAsync("RaiseOvertime");
+            NavigationParameters param = new NavigationParameters
+            {
+                {"nhanVien", this.nhanVien},
+                {"service", this.oDataService}
+            };
+            await NavigationService.NavigateAsync("RaiseOvertime",param);
         }
 
         private async Task RasieAnnualLeaveExecute()
         {
-            await NavigationService.NavigateAsync("RaiseAnnualLeave");
+            NavigationParameters param = new NavigationParameters
+            {
+                {"nhanVien", this.nhanVien},
+                {"service", this.oDataService}
+            };
+            await NavigationService.NavigateAsync("RaiseAnnualLeave",param);
         }
-
         public DelegateCommand RasieAnnualLeave { get; set; }
         public DelegateCommand RaiseOvertime { get; set; }
         public DelegateCommand RaiseComeLate { get; set; }
         public DelegateCommand RaiseAddTimeWorking { get; set; }
-
+        private NhanVien _nhanVien;
+        public NhanVien nhanVien
+        {
+            get => _nhanVien;
+            set => SetProperty(ref _nhanVien, value);
+        }
+        ODataService oDataService;
+        public override void OnNavigatingTo(INavigationParameters parameters)
+        {
+           if(parameters.GetNavigationMode() == NavigationMode.New)
+           {
+                this.nhanVien = parameters.GetValue<NhanVien>("nhanVien");
+                this.oDataService = parameters.GetValue<ODataService>("service");
+           }
+        }
     }
 }

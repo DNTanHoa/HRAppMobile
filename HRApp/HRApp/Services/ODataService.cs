@@ -130,5 +130,63 @@ namespace HRApp.Services
                 throw exception;
             }
         }
+        public async Task<List<NgayLe>> GetHolidays()
+        {
+            try
+            {
+                string type = $"{prefix}_Module_BusinessObjects_{typeof(NgayLe).Name}";
+                var results = await _client
+                             .For(type)
+                             .FindEntriesAsync();
+                if (results != null)
+                {
+                    List<NgayLe> holidays = new List<NgayLe>();
+                    foreach (var result in results)
+                    {
+                        NgayLe holiday = new NgayLe
+                        {
+                            TenNgayLe = (string)result["tenNgayLe"],
+                            SoNgayNghi = (int?)result["soNgayNghi"],
+                            NgayBatDau = (DateTime)result["ngayBatDauNghi"],
+                            NgayKetThuc = (DateTime?)result["ngayKetThuc"],
+                            GhiChu = (string)result["ghiChu"]
+                        };
+                        holidays.Add(holiday);
+                    }
+                    return holidays;
+                }
+                else
+                    return null;
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+        }
+        public async Task SaveLeave(LanNghiPhep lanNghiPhep)
+        {
+            var properties = lanNghiPhep.GetType().GetProperties();
+            try
+            {
+                string type = $"{prefix}_Module_BusinessObjects_{typeof(LanNghiPhep).Name}";
+                string nhanvien = $"{prefix}_Module_BusinessObjects_{typeof(NhanVien).Name}";
+                var nhanVien = await _client
+                               .For(nhanvien)
+                               .Key(lanNghiPhep.NhanVien)
+                               .FindEntryAsync();
+                var lanNghi = await _client
+                              .For(type)
+                              .Set(new { ngayTaoDonXin = lanNghiPhep.NgayTaoDonXin,
+                                         nguoiNghiPhep = nhanVien,
+                                         ngayNghi = lanNghiPhep.NgayNghi,
+                                         lyDo = lanNghiPhep.LyDo,
+                                         soNgayNghi = lanNghiPhep.SoNgayNghi})
+                              .InsertEntryAsync();
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+        }
     }
 }
