@@ -39,12 +39,12 @@
                          VerticalOptions="Center" 
                          HorizontalOptions="Center"
                          Margin="0,10,0,10">
-                <controls:CircleImage x:Name="AvatarPicture"
-                                      Source="{Binding avatar}}"
-                                      WidthRequest="200"
-                                      HeightRequest="200"
-                                      Aspect="AspectFit">
-                </controls:CircleImage>
+                <Image x:Name="AvatarPicture"
+                        Source="{Binding avatar}"
+                        WidthRequest="200"
+                        HeightRequest="200"
+                        Aspect="AspectFit">
+                </Image>
             </StackLayout>
             <StackLayout x:Name="FunnctionButton">
                 <Grid>
@@ -62,7 +62,8 @@
                             BorderRadius="35"
                             WidthRequest= "70"
                             HeightRequest="70"
-                            BorderColor="Tomato"/>
+                            BorderColor="Tomato"
+                            Command="{Binding UploadImageCommand}"/>
                         <Label Text="Cập Nhật Ảnh"
                                TextColor="Tomato"
                                Margin="3"/>

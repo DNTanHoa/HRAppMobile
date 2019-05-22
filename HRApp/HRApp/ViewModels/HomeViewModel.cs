@@ -2,6 +2,8 @@
 using HRApp.Models;
 using HRApp.Services;
 using HRApp.Views;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -22,6 +24,7 @@ namespace HRApp.ViewModels
         {
             Title = "Trang Thông Tin Cá Nhân";
             ViewInformationDetail = new DelegateCommand(async () => await ViewInformationDetailExecute());
+            UploadImageCommand = new DelegateCommand(async () => await UploadImageCommandExecute());
         }
         private async Task ViewInformationDetailExecute()
         {
@@ -88,6 +91,39 @@ namespace HRApp.ViewModels
             catch (Exception exception)
             {
                 throw exception;
+            }
+        }
+        public DelegateCommand UploadImageCommand { get; set; }
+        public async Task UploadImageCommandExecute()
+        {
+            await CrossMedia.Current.Initialize();
+            if(!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await App.Current.MainPage.DisplayAlert("Cập Nhật Hình ảnh", "Thiết Bị Không Hỗ Trợ Truy Cập Hình Ảnh", "Xác Nhận");
+            }
+            else
+            {
+                var mediaOptions = new PickMediaOptions
+                {
+                    PhotoSize = PhotoSize.Medium
+                };
+                var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+                if(selectedImageFile != null)
+                {
+                    byte[] image = new byte[selectedImageFile.GetStream().Length];
+                    selectedImageFile.GetStream().Read(image, 0, image.Length);
+                    await oDataService.UploadImage(this.nhanVien.Id, image);
+                    await App.Current.MainPage.DisplayAlert("Cập Nhật Hình ảnh", "Cập Nhật Hình Ảnh Thành Công", "Xác Nhận");
+                    try
+                    {
+                        this.nhanVien = await oDataService.GetEmployee(this.EmployeeCode);
+                        this.avatar = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(this.nhanVien.image)));
+                    }
+                    catch (Exception exception)
+                    {
+                        throw exception;
+                    }
+                }
             }
         }
         public override void OnNavigatedFrom(INavigationParameters parameters)

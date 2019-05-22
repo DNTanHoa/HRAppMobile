@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
+using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
 
@@ -19,6 +21,11 @@ namespace HRApp.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     public class AndroidInitializer : IPlatformInitializer
@@ -28,5 +35,6 @@ namespace HRApp.Droid
             // Register any platform specific implementations
         }
     }
+    
 }
 

@@ -57,7 +57,7 @@
                                FontAttributes="Bold"
                                FontSize="18"
                                Margin="10,0,0,0"/>
-                        <Label Text="Dương Nguyễn Tấn Hòa"
+                        <Label Text="{Binding tenNhanVien}"
                                VerticalOptions="EndAndExpand"
                                TextColor="SteelBlue"
                                FontAttributes="Italic"
@@ -80,6 +80,7 @@
                             <DatePicker TextColor="SteelBlue"
                                     FontAttributes="Italic"
                                     Format="dd/MM/yyyy"
+                                    IsEnabled="False"
                                     FontSize="18"
                                     VerticalOptions="CenterAndExpand"
                                     Grid.Column="1"/>
@@ -102,6 +103,7 @@
                             <DatePicker TextColor="SteelBlue"
                                     FontAttributes="Italic"
                                     Format="dd/MM/yyyy"
+                                    Date="{Binding ngayXin}"
                                     FontSize="18"
                                     VerticalOptions="CenterAndExpand"
                                     Grid.Column="1"/>
@@ -126,7 +128,8 @@
                                     FontSize="18"
                                     VerticalOptions="CenterAndExpand"
                                     Grid.Column="1"
-                                    Title="Chọn Loại Phiếu">
+                                    Title="Chọn Loại Phiếu"
+                                    SelectedIndex="{Binding selectedItem}">
                                 <!---->
                                 <Picker.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
@@ -134,7 +137,7 @@
                                       <x:String>Về Sớm</x:String>
                                       <x:String>Nghĩ Giữa Giờ</x:String>
                                     </x:Array>
-                                  </Picker.ItemsSource>         
+                                 </Picker.ItemsSource>         
                             </Picker>
                         </Grid>
                     </StackLayout>
@@ -152,7 +155,7 @@
                                    VerticalOptions="CenterAndExpand"
                                    Margin="10,0,0,0"/>
                             <StackLayout Grid.Column="1">
-                                <Editor Text="Lý Do Xin Đi Trễ"
+                                <Editor Text="{Binding LyDo}"
                                     TextColor="Black"
                                     MaxLength="100"
                                     VerticalOptions="CenterAndExpand"/>
@@ -166,7 +169,8 @@
                                 BorderColor="SteelBlue"
                                 BorderWidth="2"
                                 BorderRadius="20"
-                                Margin="10,0,10,0"/>
+                                Margin="10,0,10,0"
+                                Command="{Binding ConfirmCommand}"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>

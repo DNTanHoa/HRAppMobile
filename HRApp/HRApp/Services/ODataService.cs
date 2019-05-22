@@ -29,11 +29,11 @@ namespace HRApp.Services
             {
                 throw new Exception("LỖi kết nối với Internet/Wifi/3G. Vui lòng kiểm tra lại két nối");
             }
-            catch(WebRequestException)
+            catch (WebRequestException)
             {
                 throw new Exception("Mật Khẩu không đúng. Vui lòng kiểm tra lại hoặc liên hệ người quản");
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -71,7 +71,7 @@ namespace HRApp.Services
                 else
                     return null;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -86,7 +86,7 @@ namespace HRApp.Services
                                .Filter($"tenBoPhan eq '{tenBoPhan}'")
                                .Expand("NhanVien")
                                .FindEntryAsync();
-                if(result != null)
+                if (result != null)
                 {
                     BoPhan department = new BoPhan
                     {
@@ -98,7 +98,7 @@ namespace HRApp.Services
                 else
                     return null;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -125,7 +125,7 @@ namespace HRApp.Services
                 }
                 return employees;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -158,6 +158,37 @@ namespace HRApp.Services
                 else
                     return null;
             }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+        public async Task<List<GioCong>> GetWorkingDay(int IdNhanVien, DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                string type = $"{prefix}_Module_BusinessObjects_{typeof(GioCong).Name}";
+                string nhanvien = $"{prefix}_Module_BusinessObjects_{typeof(NhanVien).Name}";
+                var results = await _client
+                                .For(type)
+                                .Expand("nguoiChamCong","ngay")
+                                .FindEntriesAsync();
+                List<GioCong> gioCongs = new List<GioCong>();
+                foreach (var result in results)
+                {
+                    if(IdNhanVien == (int)(result["nguoiChamCong"] as IDictionary<string, object>)["Id"])
+                    {
+                        GioCong gioCong = new GioCong
+                        {
+                            soGioCoBan = (double?)result["soGioCoBanSaved"],
+                            soGioTangCa = (double)result["soGioTangCa"]
+                        };
+                        gioCongs.Add(gioCong);
+                    }
+                }
+                return gioCongs;
+               
+            }
             catch(Exception exception)
             {
                 throw exception;
@@ -176,12 +207,83 @@ namespace HRApp.Services
                                .FindEntryAsync();
                 var lanNghi = await _client
                               .For(type)
-                              .Set(new { ngayTaoDonXin = lanNghiPhep.NgayTaoDonXin,
-                                         nguoiNghiPhep = nhanVien,
-                                         ngayNghi = lanNghiPhep.NgayNghi,
-                                         lyDo = lanNghiPhep.LyDo,
-                                         soNgayNghi = lanNghiPhep.SoNgayNghi})
+                              .Set(new
+                              {
+                                  ngayTaoDonXin = lanNghiPhep.NgayTaoDonXin,
+                                  nguoiNghiPhep = nhanVien,
+                                  ngayNghi = lanNghiPhep.NgayNghi,
+                                  lyDo = lanNghiPhep.LyDo,
+                                  soNgayNghi = lanNghiPhep.SoNgayNghi
+                              })
                               .InsertEntryAsync();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+        public async Task SaveOverTime(LanTangCa lanTangCa)
+        {
+            try
+            {
+                string type = $"{prefix}_Module_BusinessObjects_{typeof(LanTangCa).Name}";
+                string nhanvien = $"{prefix}_Module_BusinessObjects_{typeof(NhanVien).Name}";
+                var nguoiTangCa = await _client
+                                    .For(nhanvien)
+                                    .Key(lanTangCa.NhanVien)
+                                    .FindEntryAsync();
+                var tangCa = await _client
+                                    .For(type)
+                                    .Set(new
+                                    {
+                                        nguoiTangCa = nguoiTangCa,
+                                        ngayTao = lanTangCa.NgayTao,
+                                        ngayTangCa = lanTangCa.NgayTangCa,
+                                        thoiGianBatDau = lanTangCa.ThoiGianBatDau,
+                                        thoiGianKetThuc = lanTangCa.ThoiGianKetThuc,
+                                        lyDo = lanTangCa.LyDo
+                                    })
+                                    .InsertEntryAsync();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+        public async Task UploadImage(int IdNhanVien, byte[] image)
+        {
+            try
+            {
+                string type = $"{prefix}_Module_BusinessObjects_{typeof(NhanVien).Name}";
+                var nhanvien = await _client
+                                .For(type)
+                                .Key(IdNhanVien)
+                                .Set(new {ContentHinhAnh = Convert.ToBase64String(image)})
+                                .UpdateEntryAsync();
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+        }
+        public async Task SaveComeLate(LanXinDiTre lanXinDiTre)
+        {
+            try
+            {
+                string type = $"{prefix}_Module_BusinessObjects_{typeof(LanXinDiTre).Name}";
+                string nhanvien = $"{prefix}_Module_BusinessObjects_{typeof(NhanVien).Name}";
+                var nguoiXin = await _client
+                                .For(nhanvien)
+                                .Key(lanXinDiTre.Nhanvien)
+                                .FindEntryAsync();
+                var lanXin = await _client
+                                .For(type)
+                                .Set(new { ngayTaoPhieu = DateTime.Today,
+                                           nguoiTaoPhieu = nguoiXin,
+                                           loaiPhep = lanXinDiTre.loaiPhieu,
+                                           ngayXinPhep = lanXinDiTre.NgayXin,
+                                           lyDo = lanXinDiTre.LyDo})
+                                .InsertEntryAsync();
             }
             catch(Exception exception)
             {

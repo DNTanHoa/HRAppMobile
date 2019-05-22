@@ -17,7 +17,7 @@ namespace HRApp.ViewModels
            : base(navigationService)
         {
             Title = "Trang Quản Lý Giờ Công";
-            ViewResultCommand = new DelegateCommand(ViewResultCommandExecute);
+            ViewResultCommand = new DelegateCommand(async () => await ViewResultCommandExecute());
         }
         DateTime _startDate = new DateTime(DateTime.Today.Year,DateTime.Today.Month,1);
         public DateTime startDate
@@ -49,20 +49,20 @@ namespace HRApp.ViewModels
             get => _dateWorking;
             set => SetProperty(ref _dateWorking, value);
         }
-        private string _workingHour = "0";
-        public string workingHour
+        private double _workingHour = 0;
+        public double workingHour
         {
             get => _workingHour;
             set => SetProperty(ref _workingHour, value);
         }
-        private string _numOfOvertime = "0";
-        public string numOfOvertime
+        private double _numOfOvertime = 0;
+        public double numOfOvertime
         {
             get => _numOfOvertime;
             set => SetProperty(ref _numOfOvertime, value);
         }
-        private string _overtimeHour = "0";
-        public string overtimeHour
+        private double _overtimeHour = 0;
+        public double overtimeHour
         {
             get => _overtimeHour;
             set => SetProperty(ref _overtimeHour, value);
@@ -80,11 +80,30 @@ namespace HRApp.ViewModels
             set => SetProperty(ref _numOfAnnualLeave, value);
         }
         public DelegateCommand ViewResultCommand { get; set; }
-        public void ViewResultCommandExecute()
+        public async Task ViewResultCommandExecute()
         {
+
             this.sumOfDate = CalculateSumOfDate().ToString();
             this.dateOffAllow = CalculateDateOffAllow().ToString();
             this.dateWorking = Convert.ToString(CalculateSumOfDate() - CalculateDateOffAllow());
+            this.gioCongs = new List<GioCong>(await oDataService.GetWorkingDay(this.nhanVien.Id, this.startDate, this.endDate));
+            this.workingHour = 0;
+            this.overtimeHour = 0;
+            foreach(GioCong gioCong in this.gioCongs)
+            {
+                this.workingHour += (double)gioCong.soGioCoBan;
+                this.overtimeHour += gioCong.soGioTangCa;
+            }
+        }
+        private List<GioCong> _gioCongs;
+        public List<GioCong> gioCongs
+        {
+            get => _gioCongs;
+            set
+            {
+                SetProperty(ref _gioCongs, value);
+                RaisePropertyChanged(nameof(gioCongs));
+            }
         }
         private int CalculateSumOfDate()
         {
@@ -121,10 +140,20 @@ namespace HRApp.ViewModels
             get => _holidays;
             set => SetProperty(ref _holidays, value);
         }
+        private NhanVien _nhanVien;
+        public NhanVien nhanVien
+        {
+            get => _nhanVien;
+            set
+            {
+                SetProperty(ref _nhanVien, value);
+            }
+        }
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
             oDataService = parameters.GetValue<ODataService>("service");
-            if(this.holidays == null)
+            this.nhanVien = parameters.GetValue<NhanVien>("nhanVien");
+            if (this.holidays == null)
             {
                 this.holidays = new List<NgayLe>(await oDataService.GetHolidays());
             }
